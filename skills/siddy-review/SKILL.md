@@ -5,7 +5,7 @@ description: Use when reviewing changes with a second model. Triggers on "review
 
 # Overview
 
-Review the changes with a different model and harness from your own. 
+Review the changes with a different model and harness from your own.
 
 - If you're a GPT model, use Claude Opus 5.5 as the reviewer.
 - If you're a Claude or Grok model, use GPT 6.1 Sol as the reviewer.
