@@ -21,5 +21,5 @@ Also:
 
 - Always highlight changes to the data model.
 - Name new modules, services and repositories, plus important methods, and explain how the feature works.
-- Make full use of the graphic tools available, whether that's HTML or Mermaid diagrams. Visuals are easier to follow than blocks of text.
+- Choose the visual that fits what changed, not a fixed layout. For changes across services, draw one map of the real system, mark what changed, let the reader switch between scenarios, and pin each risk where it happens. If the change produces something visible, show the real output.
 - Compare the change with the rest of the codebase. Does it introduce any new patterns? A new pattern increases the risk of the change.
