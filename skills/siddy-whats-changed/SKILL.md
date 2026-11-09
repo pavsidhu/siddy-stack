@@ -19,7 +19,7 @@ Use the format below. Lines in `<!-- -->` are instructions for you; don't copy t
 
 ## Overview
 
-<!-- An overview of the changes made and why they were made. -->
+<!-- An overview of the changes made and why they were made. Attach inline screenshots and videos as evidence. -->
 
 ## Risks
 
