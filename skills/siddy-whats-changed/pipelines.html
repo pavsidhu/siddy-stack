@@ -1,0 +1,75 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{margin:0;font-family:var(--font-sans);color:var(--foreground)}
+.row{margin-bottom:18px}
+.row:last-child{margin-bottom:2px}
+.row h3{margin:0 0 7px;font-size:13px;font-weight:600}
+.row h3 span{font-weight:400;color:var(--muted-foreground);margin-left:6px}
+.flow{display:flex;align-items:stretch}
+.step{flex:1 1 0;min-width:0;position:relative;border:1.5px solid var(--border);border-radius:var(--radius);padding:8px 28px 9px 10px;font-size:12.5px;line-height:1.3}
+.step.same{background:var(--muted);color:var(--muted-foreground);opacity:.6}
+.step.new{border-color:var(--success);background:color-mix(in srgb,var(--success) 12%,transparent)}
+.step.changed{border-color:var(--warning);background:color-mix(in srgb,var(--warning) 12%,transparent)}
+.step.deleted{border-color:var(--destructive);background:color-mix(in srgb,var(--destructive) 12%,transparent);text-decoration:line-through;text-decoration-color:var(--destructive)}
+.arrow{flex:none;width:16px;display:flex;align-items:center;justify-content:center;color:var(--muted-foreground)}
+.arrow svg{width:12px;height:12px}
+.info{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;border:1px solid var(--border);background:var(--background);color:var(--muted-foreground);font:700 11px/16px var(--font-sans);text-align:center;padding:0;cursor:pointer;text-decoration:none}
+.info:hover,.info[aria-expanded=true]{border-color:var(--ring);color:var(--foreground);box-shadow:0 0 0 2px color-mix(in srgb,var(--ring) 40%,transparent)}
+#pop{position:fixed;z-index:10;width:280px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:12px 14px;border-radius:var(--radius);background:var(--popover);color:var(--popover-foreground);border:1px solid var(--border);box-shadow:0 8px 24px rgb(0 0 0 / .25);font-size:12.5px;line-height:1.45;display:none}
+#pop b{display:block;margin-bottom:4px;font-size:13px}
+#pop p{margin:0 0 6px}
+#pop p:last-child{margin:0}
+#pop code{font-family:var(--font-mono);font-size:11.5px;background:var(--code-background);padding:0 3px;border-radius:3px}
+@media (max-width:600px){
+ .flow{flex-direction:column}
+ .arrow{width:auto;height:14px}
+ .arrow svg{transform:rotate(90deg)}
+}
+</style></head><body>
+<div id="rows"></div>
+<div id="pop" role="dialog"></div>
+<script>
+/*
+  Fill in ROWS only. Do not change anything else in this file.
+  One row per pipeline. Each step:
+    name:    2-3 plain words, no code names
+    state:   "new" (green), "changed" (yellow), "deleted" (red), "same" (grey, dimmed)
+    details: HTML for the pop-up, as <p> paragraphs. Code names, files and numbers go here.
+  Example:
+    { title: "Video", note: "optional grey note", steps: [
+      { name: "Upload", state: "same", details: "<p>Unchanged.</p>" },
+      { name: "Pick frames", state: "new", details: "<p>...</p>" } ] }
+*/
+const ROWS = [];
+
+const ARROW='<div class="arrow"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5"/></svg></div>';
+const rows=document.getElementById("rows"),pop=document.getElementById("pop"),steps=[];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ROWS.forEach(r=>{
+ const el=document.createElement("div");el.className="row";
+ el.innerHTML="<h3>"+esc(r.title)+(r.note?"<span>"+esc(r.note)+"</span>":"")+"</h3><div class='flow'>"+r.steps.map(s=>{
+  const i=steps.push(s)-1;
+  return "<div class='step "+s.state+"'>"+esc(s.name)+(s.details?"<button class='info' data-i='"+i+"' aria-expanded='false' aria-label='About "+esc(s.name)+"'>?</button>":"")+"</div>";
+ }).join(ARROW)+"</div>";
+ rows.appendChild(el);
+});
+let open=null;
+function close(){if(open){open.setAttribute("aria-expanded","false");open=null}pop.style.display="none"}
+function show(btn){
+ close();open=btn;btn.setAttribute("aria-expanded","true");
+ const s=steps[btn.dataset.i];
+ pop.innerHTML="<b>"+esc(s.name)+"</b>"+s.details;pop.style.display="block";
+ const box=btn.closest(".step").getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight;
+ const left=Math.min(Math.max(8,box.left),innerWidth-pw-8);
+ let top=box.bottom+6;
+ if(top+ph>innerHeight-4) top=Math.max(4,box.top-ph-6);
+ pop.style.left=left+"px";pop.style.top=top+"px";
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest(".info[data-i]");
+ if(b){e.stopPropagation();open===b?close():show(b);return}
+ if(!pop.contains(e.target))close();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+addEventListener("scroll",close,true);addEventListener("resize",close);
+</script></body></html>
