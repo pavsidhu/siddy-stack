@@ -9,17 +9,56 @@ Keep your delivery concise, simple and jargon-free.
 
 ## How to present
 
-Start with a short overview of what the change is from a product perspective.
+- Always reference changes to services, including new or changed services and their methods. Ideally link to them if possible like [UserService.create()](/absolute/path/to/file/with/line/number)
+- Skip any sections that are not relevant. For example, a small UX change may just need an overview, whereas a new feature may need everything.
 
-Next, group related edits, with the highest blast radius first. Skip empty levels. Ignore style nits.
+Use the format below. Lines in `<!-- -->` are instructions for you; don't copy them into the reply.
 
-- **High**: can cause a major break in production (data loss, auth, billing, outage, bad migration).
-- **Medium**: the product stays up, but a real user path is wrong.
-- **Low**: a small UI bug.
+```
+# Title of the change
 
-Also:
+## Overview
 
-- Always highlight changes to the data model.
-- Name new modules, services and repositories, plus important methods, and explain how the feature works.
-- Make full use of the graphic tools available, whether that's HTML or Mermaid diagrams. Visuals are easier to follow than blocks of text.
-- Compare the change with the rest of the codebase. Does it introduce any new patterns? A new pattern increases the risk of the change.
+<!-- An overview of the changes made and why they were made. -->
+
+## Risks
+
+<!--
+Think about what could go wrong once this change goes into production.
+Group related edits, with the highest blast radius first.
+- 🔴 High: can cause a major break in production (data loss, auth, billing, outage, bad migration).
+- 🟡 Medium: the product stays up, but a real user path is wrong.
+- 🟢 Low: a small UI bug.
+-->
+
+| # | Level | Description |
+|---|---|---|
+| 1 | 🔴 | <!-- A description of the risk. --> |
+
+## Pipelines
+
+<!--
+If the change touches a flow, copy `pipelines.html` from this skill's folder and fill in `ROWS` only. Its comment explains the format.
+- One row per pipeline: main paths, then failures, then one-off scripts.
+- Short plain step names. Keep the unchanged steps around the change.
+- Code names and numbers go in the pop-ups.
+- Check it with `html_preview`, then show it with `html_render`.
+-->
+
+## Data model
+
+<!--
+If the database schema changed, copy `datamodel.html` from this skill's folder and fill in `TABLES` only. Its comment explains the format.
+- Show every new, changed or deleted table, column, extension or enum, plus the tables they link to.
+- Code names and numbers go in the pop-ups.
+- Check it with `html_preview`, then show it with `html_render`.
+-->
+
+## New patterns
+
+<!-- Compare the changes with the rest of the codebase. Are there new code or architecture patterns that we use in the change? -->
+
+| # | New pattern |
+|---|---|
+| 1 | <!-- A description of the new pattern. --> |
+```
