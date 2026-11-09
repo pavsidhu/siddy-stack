@@ -47,7 +47,12 @@ If the change touches a flow, copy `pipelines.html` from this skill's folder and
 
 ## Data model
 
-<!-- Present all the changes to the database schema as a UML diagram. Use the colours red, yellow and green for the parts that have been deleted, changed and added respectively. -->
+<!--
+If the database schema changed, copy `datamodel.html` from this skill's folder and fill in `TABLES` only. Its comment explains the format.
+- Show every new, changed or deleted table, column, extension or enum, plus the tables they link to.
+- Code names and numbers go in the pop-ups.
+- Check it with `html_preview`, then show it with `html_render`.
+-->
 
 ## New patterns
 
