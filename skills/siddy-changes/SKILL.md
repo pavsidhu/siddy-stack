@@ -1,5 +1,5 @@
 ---
-name: siddy-whats-changed
+name: siddy-changes
 description: Use when the user asks to explain changes on a branch, PR, or specific files or features. Triggers on "what changed", "what's changed", "explain this branch", "summarise this PR", "walk me through the changes", "what did I change", "what's the blast radius".
 ---
 
