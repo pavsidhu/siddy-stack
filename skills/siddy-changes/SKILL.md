@@ -13,7 +13,7 @@ Keep your delivery concise, simple and jargon-free.
 - Skip any sections that are not relevant. For example, a small UX change may just need an overview, whereas a new feature may need everything.
 - Write the reply section by section, calling `html_render` only once you reach a diagram's section so it appears inline, not above the text.
 
-Use the format below. Lines in `<!-- -->` are instructions for you; don't copy them into the reply.
+Always use the format below, even if you've already explained changes earlier in the conversation. Lines in `<!-- -->` are instructions for you; don't copy them into the reply.
 
 ```
 # Title of the change
