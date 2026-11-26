@@ -11,14 +11,17 @@ Use the T3 Code tools (`delegate_task`) to run both reviewers as subagents at th
 
 # Review process
 
-Go through 3 rounds of review. In each round:
+Keep reviewing in rounds until both reviewers agree the change is ready. In each round:
 
 1. Both reviewers produce a list of security vulnerabilities, performance issues, bugs and other issues found in the change, ordered from highest to lowest priority.
 2. You go through both lists, merge duplicates and evaluate whether each issue is valid. For each valid issue, make the smallest possible change required to address it. Ignore extreme edge cases and be careful of scope creep.
+3. Ask both reviewers whether the change is now ready. If both say yes, stop. Otherwise, start another round.
+
+If the reviewers still disagree after 5 rounds, stop and ask the user how to proceed.
 
 # Report
 
-When the 3 rounds are done, finish with a table of every issue raised:
+When the reviewers agree, finish with a table of every issue raised:
 
 | | Issue | Decision |
 |---|---|---|
