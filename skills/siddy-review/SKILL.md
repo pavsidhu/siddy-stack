@@ -5,7 +5,7 @@ description: Use when reviewing changes with a second model. Triggers on "review
 
 # Overview
 
-Review the changes with two reviewers running in parallel: Astra 6.2 and Cursor Grok 4.7.
+Review the changes with two reviewers running in parallel: ChatGPT Astra 6.2 and Cursor Grok 4.7.
 
 Use the T3 Code tools (`delegate_task`) to run both reviewers as subagents at the same time.
 
