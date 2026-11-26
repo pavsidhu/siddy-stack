@@ -14,7 +14,7 @@ Use the T3 Code tools (`delegate_task`) to run all three reviewers as subagents 
 Keep reviewing in rounds until all three reviewers agree the change is ready. In each round:
 
 1. Each reviewer produces a list of security vulnerabilities, performance issues, bugs and other issues found in the change, ordered from highest to lowest priority.
-2. You go through all three lists, merge duplicates and evaluate whether each issue is valid. For each valid issue, make the smallest possible change required to address it. Ignore extreme edge cases and be careful of scope creep.
+2. You go through all three lists, merge duplicates (keeping track of every reviewer that raised each one) and evaluate whether each issue is valid. For each valid issue, make the smallest possible change required to address it. Ignore extreme edge cases and be careful of scope creep.
 3. Ask all three reviewers whether the change is now ready. If all three say yes, stop. Otherwise, start another round.
 
 If the reviewers still disagree after 5 rounds, stop and ask the user how to proceed.
@@ -23,7 +23,9 @@ If the reviewers still disagree after 5 rounds, stop and ask the user how to pro
 
 When the reviewers agree, finish with a table of every issue raised:
 
-| | Issue | Decision |
-|---|---|---|
-| ✅ | Issue that was fixed | What was changed |
-| ❌ | Issue that was dismissed | Why it was dismissed |
+| | Issue | Decision | Raised by |
+|---|---|---|---|
+| ✅ | Issue that was fixed | What was changed | Astra 6.2, Opus 5.5 |
+| ❌ | Issue that was dismissed | Why it was dismissed | Grok 4.7 |
+
+List every reviewer that raised the issue in the "Raised by" column.
