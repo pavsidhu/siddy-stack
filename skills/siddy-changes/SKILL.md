@@ -10,6 +10,7 @@ Keep your delivery concise, simple and jargon-free.
 ## How to present
 
 - Always reference changes to services, including new or changed services and their methods. Ideally link to them if possible like [UserService.create()](/absolute/path/to/file/with/line/number)
+- If the change affects anything the user can see, embed screenshots or a video inline in the overview using Markdown image syntax with an absolute path, like `![Settings page](/absolute/path/to/screenshot.png)`. If you don't have any, capture them with the preview or device tools. Never just link to or describe them.
 - Skip any sections that are not relevant. For example, a small UX change may just need an overview, whereas a new feature may need everything.
 - Write the reply section by section, calling `html_render` only once you reach a diagram's section so it appears inline, not above the text.
 
@@ -20,7 +21,7 @@ Always use the format below, even if you've already explained changes earlier in
 
 ## Overview
 
-<!-- An overview of the changes made and why they were made. Attach inline screenshots and videos as evidence. -->
+<!-- An overview of the changes made and why they were made. Embed screenshots and videos inline as evidence. -->
 
 ## Risks
 
